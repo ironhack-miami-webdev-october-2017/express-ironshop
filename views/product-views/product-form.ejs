@@ -1,0 +1,25 @@
+<h2> Add a Product </h2>
+
+<form method="post" action="/products">
+  <label for="product-name-input"> Product Name </label>
+  <input  id="product-name-input" type="text" placeholder="e.g. Nintendo Switch"
+      name="productName" />
+  <br />
+
+  <label for="product-price-input"> Product Price </label>
+  <input  id="product-price-input" type="number" step="0.10"
+      placeholder="e.g. 299.99" name="productPrice" />
+  <br />
+
+  <label for="product-image-input"> Image URL </label>
+  <input  id="product-image-input" type="text"
+      placeholder="e.g. http://example.com/nintendo.gif" name="productImage" />
+  <br />
+
+  <label   for="product-description-input"> Description </label>
+  <textarea id="product-description-input" placeholder="e.g. Gaming console"
+      name="productDescription"></textarea>
+  <br />
+
+  <button> Save This Product </button>
+</form>
