@@ -30,8 +30,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
+
+
+
+// ROUTES ----------------------------------------------------------------------
 const index = require('./routes/index');
 app.use('/', index);
+
+// connect the app to the product router file (where all the product routes are)
+const myProductRouter = require('./routes/product-router');
+app.use(myProductRouter);
+// -----------------------------------------------------------------------------
+
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
