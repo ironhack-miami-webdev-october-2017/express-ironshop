@@ -5,6 +5,18 @@
 <img src="<%= productDetails.imageUrl %>" />
 
 
+<!-- weird if statement with "typeof" to avoid an error -->
+<% if (typeof validationErrors !== "undefined") { %>
+  <ul class="error">
+    <!-- we cant do a forEach loop because "validationErrors" is an object -->
+
+    <% for (let field in validationErrors) { %>
+      <li> <%= validationErrors[field].message %> </li>
+    <% } %>
+  </ul>
+<% } %>
+
+
 <form method="post" action="/products/<%= productDetails._id %>/reviews">
   <label for="review-author-name"> Your Name </label>
   <input  id="review-author-name" type="text" placeholder="e.g. Luigi Mario"
@@ -18,7 +30,7 @@
 
   <label for="review-stars"> Rating </label>
   <input  id="review-stars" type="number" placeholder="e.g. 5"
-      name="reviewStars" />
+      name="reviewStars" min="1" max="5" />
   <br />
 
   <label   for="review-content"> Rating </label>

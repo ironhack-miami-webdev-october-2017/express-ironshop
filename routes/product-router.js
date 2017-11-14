@@ -54,8 +54,16 @@ router.post("/products", (req, res, next) => {
             // you can ONLY redirect to a URL
       })
       .catch((err) => {
-          // render the error page with our error
-          next(err);
+          // is this a validation error?
+          // if it is then display the form with the error messages
+          if (err.errors) {
+              res.locals.validationErrors = err.errors;
+              res.render("product-views/product-form");
+          }
+          // if it isn't then render the error page with our error
+          else {
+              next(err);
+          }
       });
 }); // POST /products
 
@@ -138,6 +146,10 @@ router.post("/products/:prodId", (req, res, next) => {
               // fields from         names of the
               // model's schema      input tags
 
+          // set up the "productDetails" local variable in case 
+          // we get validation errors and need to display the form again
+          res.locals.productDetails = productFromDb;
+
           // and then save the updates
           // (return the promise of the next database operation)
           return productFromDb.save();
@@ -150,8 +162,16 @@ router.post("/products/:prodId", (req, res, next) => {
             // you can ONLY redirect to a URL
       })
       .catch((err) => {
-          // render the error page with our error
-          next(err);
+          // is this a validation error?
+          // if it is then display the form with the error messages
+          if (err.errors) {
+              res.locals.validationErrors = err.errors;
+              res.render("product-views/product-edit");
+          }
+          // if it isn't then render the error page with our error
+          else {
+              next(err);
+          }
       });
 });
 

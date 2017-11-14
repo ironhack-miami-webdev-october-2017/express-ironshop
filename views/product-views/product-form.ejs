@@ -1,5 +1,17 @@
 <h2> Add a Product </h2>
 
+<!-- weird if statement with "typeof" to avoid an error -->
+<% if (typeof validationErrors !== "undefined") { %>
+  <ul class="error">
+    <!-- we cant do a forEach loop because "validationErrors" is an object -->
+
+    <% for (let field in validationErrors) { %>
+      <li> <%= validationErrors[field].message %> </li>
+    <% } %>
+  </ul>
+<% } %>
+
+
 <form method="post" action="/products">
   <label for="product-name-input"> Product Name </label>
   <input  id="product-name-input" type="text" placeholder="e.g. Nintendo Switch"
