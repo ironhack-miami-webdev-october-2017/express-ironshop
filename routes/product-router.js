@@ -59,4 +59,43 @@ router.post("/products", (req, res, next) => {
 }); // POST /products
 
 
+router.get("/products/details", (req, res, next) => {
+    //      /products/details?prodId=9999
+    //                           |
+    //              req.query.prodId
+    // ProductModel.findOne({ _id: req.query.prodId })
+    ProductModel.findById(req.query.prodId)
+      .then((productFromDb) => {
+          // create a local variable for the view to access the DB result
+          res.locals.productDetails = productFromDb;
+
+          res.render("product-views/product-details");
+      })
+      .catch((err) => {
+          // render the error page with our error
+          next(err);
+      });
+}); // GET /products/details
+
+
+// Routes with URL parameters need to be at the BOTTOM
+router.get("/products/:prodId", (req, res, next) => {
+    //      /products/ 9999
+    //                   |
+    //      req.params.prodId
+    // ProductModel.findOne({ _id: req.params.prodId })
+    ProductModel.findById(req.params.prodId)
+      .then((productFromDb) => {
+          // create a local variable for the view to access the DB result
+          res.locals.productDetails = productFromDb;
+
+          res.render("product-views/product-details");
+      })
+      .catch((err) => {
+          // render the error page with our error
+          next(err);
+      });
+}); // GET /products/:prodId
+
+
 module.exports = router;
