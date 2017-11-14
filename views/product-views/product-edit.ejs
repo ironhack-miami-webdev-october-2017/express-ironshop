@@ -1,0 +1,33 @@
+<h2> Edit This Product </h2>
+
+<form method="post" action="/products/<%= productDetails._id %>">
+  <label for="product-name-input"> Product Name </label>
+  <input  id="product-name-input" type="text" placeholder="e.g. Nintendo Switch"
+      name="productName" value="<%= productDetails.name %>" />
+  <br />
+
+  <label for="product-price-input"> Product Price </label>
+  <input  id="product-price-input" type="number" step="0.10"
+      placeholder="e.g. 299.99" name="productPrice"
+      value="<%= productDetails.price %>" />
+  <br />
+
+  <label for="product-image-input"> Image URL </label>
+  <input  id="product-image-input" type="text"
+      placeholder="e.g. http://example.com/nintendo.gif" name="productImage"
+      value="<%= productDetails.imageUrl %>" />
+  <br />
+
+  <h3> Current Image </h3>
+  <img src="<%= productDetails.imageUrl %>" />
+  <br />
+
+  <label   for="product-description-input"> Description </label>
+  <textarea id="product-description-input" placeholder="e.g. Gaming console"
+      name="productDescription"><%= productDetails.description %></textarea>
+                 <!--          ||                               ||
+                      No extra spaces between the open and close of <textarea> -->
+  <br />
+
+  <button> Save Changes </button>
+</form>
