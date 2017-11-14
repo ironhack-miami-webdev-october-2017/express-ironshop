@@ -38,8 +38,11 @@ const index = require('./routes/index');
 app.use('/', index);
 
 // connect the app to the product router file (where all the product routes are)
-const myProductRouter = require('./routes/product-router');
+const myProductRouter = require("./routes/product-router");
 app.use(myProductRouter);
+
+const myReviewRouter = require("./routes/review-router");
+app.use(myReviewRouter);
 // -----------------------------------------------------------------------------
 
 

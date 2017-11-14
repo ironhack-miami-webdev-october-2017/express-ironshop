@@ -22,3 +22,21 @@
 <form method="post" action="/products/<%= productDetails._id %>/delete">
   <button> Delete This Product (POST version) </button>
 </form>
+
+<hr />
+
+<h3> Reviews </h3>
+
+<a href="/products/<%= productDetails._id %>/reviews/new">
+  Write a Review
+</a>
+
+<ul>
+  <% listOfReviews.forEach((oneReview) => { %>
+    <li>
+      <h4> <%= oneReview.stars %> out of 5</h4>
+      <p> <%= oneReview.content %> </p>
+      <p> by <%= oneReview.authorName %> (<%= oneReview.authorEmail %>) </p>
+    </li>
+  <% }) %>
+</ul>

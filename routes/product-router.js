@@ -1,6 +1,7 @@
 const express = require("express");
 
 const ProductModel = require("../models/product-model");
+const ReviewModel = require("../models/review-model");
 
 
 const router = express.Router();
@@ -88,6 +89,13 @@ router.get("/products/:prodId", (req, res, next) => {
       .then((productFromDb) => {
           // create a local variable for the view to access the DB result
           res.locals.productDetails = productFromDb;
+
+          // now retrieve the reviews from the database
+          // (return the promise of the next database operation)
+          return ReviewModel.find({ product: req.params.prodId }).exec();
+      })
+      .then((reviewResults) => {
+          res.locals.listOfReviews = reviewResults;
 
           res.render("product-views/product-details");
       })

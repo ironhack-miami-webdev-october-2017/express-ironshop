@@ -1,0 +1,30 @@
+<h2> Write a Review </h2>
+
+<h3> <%= productDetails.name %> </h3>
+
+<img src="<%= productDetails.imageUrl %>" />
+
+
+<form method="post" action="/products/<%= productDetails._id %>/reviews">
+  <label for="review-author-name"> Your Name </label>
+  <input  id="review-author-name" type="text" placeholder="e.g. Luigi Mario"
+      name="reviewAuthorName" />
+  <br />
+
+  <label for="review-author-email"> Your Email </label>
+  <input  id="review-author-email" type="email"
+      name="reviewAuthorEmail" placeholder="e.g. luigi@nintendo.com" />
+  <br />
+
+  <label for="review-stars"> Rating </label>
+  <input  id="review-stars" type="number" placeholder="e.g. 5"
+      name="reviewStars" />
+  <br />
+
+  <label   for="review-content"> Rating </label>
+  <textarea id="review-content" placeholder="e.g. Best product ever!"
+      name="reviewContent"></textarea>
+  <br />
+
+  <button> Submit Review </button>
+</form>
