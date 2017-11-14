@@ -14,3 +14,11 @@
 <a href="/products/<%= productDetails._id %>/edit">
   Edit This Product
 </a>
+
+<a href="/products/<%= productDetails._id %>/delete">
+  Delete This Product (GET version)
+</a>
+
+<form method="post" action="/products/<%= productDetails._id %>/delete">
+  <button> Delete This Product (POST version) </button>
+</form>

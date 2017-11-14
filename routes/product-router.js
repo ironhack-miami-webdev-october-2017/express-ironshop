@@ -148,4 +148,35 @@ router.post("/products/:prodId", (req, res, next) => {
 });
 
 
+// use this or the POST version of deleting (not both)
+router.get("/products/:prodId/delete", (req, res, next) => {
+    ProductModel.findByIdAndRemove(req.params.prodId)
+      .then((productFromDb) => {
+          // redirect to the list of products page
+          // (you can't see the details of a product that isn't in the DB)
+          res.redirect("/products");
+            // you CAN'T redirect to an EJS file
+            // you can ONLY redirect to a URL
+      })
+      .catch((err) => {
+          next(err);
+      });
+});
+
+// use this or the GET version of deleting (not both)
+router.post("/products/:prodId/delete", (req, res, next) => {
+    ProductModel.findByIdAndRemove(req.params.prodId)
+      .then((productFromDb) => {
+          // redirect to the list of products page
+          // (you can't see the details of a product that isn't in the DB)
+          res.redirect("/products");
+            // you CAN'T redirect to an EJS file
+            // you can ONLY redirect to a URL
+      })
+      .catch((err) => {
+          next(err);
+      });
+});
+
+
 module.exports = router;
