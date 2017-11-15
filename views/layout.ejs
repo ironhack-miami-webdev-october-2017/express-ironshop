@@ -12,7 +12,16 @@
       <nav>
         <a href="/"> Home </a>
         <a href="/products"> Products </a>
+        <a href="/products/luxury"> Luxury Products </a>
+        <a href="/products/value"> Best Value Products </a>
       </nav>
+
+      <form method="get" action="/search">
+        <label for="search-term-input"> Search Term </label>
+        <input  id="search-term-input" type="search"
+            name="userSearch" placeholder="e.g. Star Wars" />
+        <button> Search </button>
+      </form>
     </header>
 
     <%- body %>

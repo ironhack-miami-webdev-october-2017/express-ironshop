@@ -1,0 +1,21 @@
+<h2> Search Results </h2>
+
+<p>
+  You searched for <b><%= searchTerm %></b>.
+  We found <%= listOfResults.length %> results.
+</p>
+
+<ul>
+  <% listOfResults.forEach((oneProduct) => { %>
+    <li>
+      <h3> <%= oneProduct.name %> </h3>
+      <p> $<%= oneProduct.price %> </p>
+      <img src="<%= oneProduct.imageUrl %>" />
+      <br />
+
+      <a href="/products/<%= oneProduct._id %>">
+        View Details
+      </a>
+    </li>
+  <% }) %>
+</ul>

@@ -7,6 +7,31 @@ const ReviewModel = require("../models/review-model");
 const router = express.Router();
 
 
+router.get("/search", (req, res, next) => {
+    // create a regular expression from the search term
+    // (this allows us to do partial matches)        ignore case
+    //                                                    |
+    const searchRegex = new RegExp(req.query.userSearch, "i");
+      //                                          |
+      //                             /search?userSearch=battery
+
+    ProductModel // find products whose "name" matches the search term
+      .find({ name: searchRegex })
+      .limit(20)
+      .exec()
+      .then((searchResults) => {
+          res.locals.listOfResults = searchResults;
+          res.locals.searchTerm = req.query.userSearch;
+
+          res.render("product-views/search-page");
+      })
+      .catch((err) => {
+          // render the error page with our error
+          next(err);
+      });
+});
+
+
 router.get("/products", (req, res, next) => {
     ProductModel
       .find()
@@ -146,7 +171,7 @@ router.post("/products/:prodId", (req, res, next) => {
               // fields from         names of the
               // model's schema      input tags
 
-          // set up the "productDetails" local variable in case 
+          // set up the "productDetails" local variable in case
           // we get validation errors and need to display the form again
           res.locals.productDetails = productFromDb;
 
