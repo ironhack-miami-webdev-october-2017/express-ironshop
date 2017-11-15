@@ -1,0 +1,16 @@
+<h2> Top 20 Luxury Products </h2>
+
+<ol>
+  <% listOfExpensiveProducts.forEach((oneProduct) => { %>
+    <li>
+      <h3> <%= oneProduct.name %> </h3>
+      <p> $<%= oneProduct.price %> </p>
+      <img src="<%= oneProduct.imageUrl %>" />
+      <br />
+
+      <a href="/products/<%= oneProduct._id %>">
+        View Details
+      </a>
+    </li>
+  <% }) %>
+</ol>

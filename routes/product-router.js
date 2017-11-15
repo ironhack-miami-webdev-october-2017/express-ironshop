@@ -32,6 +32,39 @@ router.get("/search", (req, res, next) => {
 });
 
 
+router.get("/products/luxury", (req, res, next) => {
+    ProductModel
+      .find()
+      .limit(20)
+      // negative 1 for reverse order
+      .sort({ price: -1 })
+      .exec()
+      .then((expensiveProducts) => {
+          res.locals.listOfExpensiveProducts = expensiveProducts;
+          res.render("product-views/luxury-page");
+      })
+      .catch((err) => {
+          next(err);
+      });
+}); // GET /products/luxury
+
+router.get("/products/value", (req, res, next) => {
+    ProductModel
+      .find()
+      .limit(20)
+      // positive 1 for normal order
+      .sort({ price: 1 })
+      .exec()
+      .then((cheapProducts) => {
+          res.locals.listOfCheapProducts = cheapProducts;
+          res.render("product-views/best-value-page");
+      })
+      .catch((err) => {
+          next(err);
+      });
+}); // GET /products/value
+
+
 router.get("/products", (req, res, next) => {
     ProductModel
       .find()
